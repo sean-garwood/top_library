@@ -35,6 +35,11 @@ input {
     appearance: none;
 }
 
+button {
+    cursor: pointer;
+    border-radius: 5px;
+}
+
 form {
     background: #35424a;
     padding: 20px;
@@ -44,6 +49,8 @@ form {
 
 input {
     box-shadow: none;
+    /* make checkbox visible */
+    -webkit-appearance: checkbox;
 }
 
 fieldset {
@@ -68,6 +75,7 @@ button {
 
 .book-info-container {
     background: #35424a;
+    border-radius: 5px;
     color: #ffffff;
     padding: 10px 20px;
     text-decoration: none;
@@ -93,7 +101,7 @@ button {
 
 .read:hover {
     background: #5bbf7d;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>');
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="%23ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>');
 }
 
 #library-container {

@@ -25,6 +25,7 @@ export function makeBook() {
   const author = document.getElementById("author").value;
   const releaseYear = document.getElementById("release-year").value;
   const genre = document.getElementById("genre").value;
+  const isRead = document.getElementById("is-read").checked;
 
-  return new Book(title, author, releaseYear, genre);
+  return new Book(title, author, releaseYear, genre, isRead);
 }

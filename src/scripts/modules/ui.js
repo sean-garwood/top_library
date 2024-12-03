@@ -11,9 +11,9 @@ export function displayBooks() {
   });
 }
 
-function addEventListenersToButtons(bookInfoDiv) {
+function addEventListenersToButtons(book, bookInfoDiv) {
   addEventListenerToRemoveBookButton(bookInfoDiv);
-  addEventListenerToMarkAsReadButton(bookInfoDiv);
+  addEventListenerToMarkAsReadButton(book, bookInfoDiv);
 }
 
 function addEventListenerToRemoveBookButton(bookInfoDiv) {
@@ -26,12 +26,13 @@ function addEventListenerToRemoveBookButton(bookInfoDiv) {
   });
 }
 
-function addEventListenerToMarkAsReadButton(bookInfoDiv) {
+function addEventListenerToMarkAsReadButton(book, bookInfoDiv) {
   const markAsReadButton = bookInfoDiv.querySelector(".mark-as-read-btn");
   markAsReadButton.addEventListener("click", () => {
-    markAsReadButton.textContent = "Read";
-    markAsReadButton.disabled = true;
-    markAsReadButton.parentNode.classList.add("read");
+    markAsReadButton.textContent = `Mark as ${(book.isRead) ? "Unr" : "R"}ead`;
+    bookInfoDiv.classList.toggle("read");
+    book.isRead = !book.isRead;
+    displayBooks();
   });
 }
 
@@ -41,7 +42,7 @@ function bookInfoInnerHTML(book) {
     <p>By ${book.author}</p>
     <p>Released ${book.releaseYear}</p>
     <p>Genre: ${book.genre}</p>
-    <button class="mark-as-read-btn">Mark as Read</button>
+    <button class="mark-as-read-btn">Mark as ${book.isRead ? "Unread" : "Read"}</button>
     <button class="remove-book-btn">Remove</button>
   `
 }
@@ -50,6 +51,7 @@ function buildBookDiv(book) {
   const bookInfoDiv = document.createElement("div");
   const bookIndex = getBookLibrary().indexOf(book);
   bookInfoDiv.classList.add("book-info-container");
+  book.isRead ? bookInfoDiv.classList.add("read") : bookInfoDiv.classList.remove("read");
 
   bookInfoDiv.innerHTML = bookInfoInnerHTML(book);
   bookInfoDiv.setAttribute("data-index", bookIndex);
@@ -62,6 +64,6 @@ function clearLibraryContainer() {
 
 function displayBook(book) {
   const bookInfoDiv = buildBookDiv(book);
-  addEventListenersToButtons(bookInfoDiv);
+  addEventListenersToButtons(book, bookInfoDiv);
   libContainer.appendChild(bookInfoDiv);
 }
