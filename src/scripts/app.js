@@ -1,5 +1,5 @@
 import { makeBook, addBookToLibrary } from './modules/library.js';
-import { displayBook, addEventListenersToRemoveBookButtons } from './modules/ui.js';
+import { addEventListenersToButtons, displayBook } from './modules/ui.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const newBookButton = document.querySelector('.add-book-btn');
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const newBook = makeBook();
           addBookToLibrary(newBook);
           displayBook(newBook);
-          addEventListenersToRemoveBookButtons();
+          addEventListenersToButtons();
         });
       })
       .catch(error => console.error('Error loading the form:', error));

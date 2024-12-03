@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: slategray;
 }
 
 header {
@@ -13,20 +13,6 @@ header {
 
 h1 {
     margin: 0;
-}
-
-nav {
-    margin: 20px 0;
-}
-
-nav a {
-    color: #ffffff;
-    text-decoration: none;
-    margin: 0 15px;
-}
-
-nav a:hover {
-    text-decoration: underline;
 }
 
 main {
@@ -41,4 +27,78 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
+}
+
+form,
+button,
+input {
+    appearance: none;
+}
+
+form {
+    background: #35424a;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input {
+    box-shadow: none;
+}
+
+fieldset {
+    border: none;
+    padding: 0;
+    max-width: 30vw;
+}
+
+fieldset>div {
+    margin: 10px 0;
+}
+
+button {
+    background: #426c6a;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.book-info-container {
+    background: #35424a;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.book-info-container:hover {
+    background: #2a363b;
+}
+
+.field-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.read {
+    background: #6dcf8d;
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-block;
+    /* display a little checkmark */
+}
+
+.read:hover {
+    background: #5bbf7d;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>');
+}
+
+#library-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;
+    margin: 20px 0 0;
 }
