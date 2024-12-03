@@ -1,5 +1,6 @@
 // FILE: modules/library.js
 import Book from './Book.js';
+import { displayBooks } from './ui.js';
 
 const bookLibrary = [];
 
@@ -12,6 +13,7 @@ export function removeBookFromLibrary(book) {
   if (bookIndex !== -1) {
     bookLibrary.splice(bookIndex, 1);
   }
+  displayBooks();
 }
 
 export function getBookLibrary() {
