@@ -1,23 +1,28 @@
 const bookLibrary = [];
-const showBookButton = document.querySelector(".new-book-button");
-const bookFormContainer = document.querySelector(".book-form-container");
+// FILE: scripts/app.js
+document.addEventListener('DOMContentLoaded', () => {
+  const newBookButton = document.querySelector('.new-book-button');
+  const bookFormContainer = document.querySelector('.book-form-container');
 
-showBookButton.addEventListener("click", () => {
-  fetch("./book-form.html")
-    .then(response => response.text())
-    .then(data => {
-      bookFormContainer.innerHTML = data;
-    })
-    .catch(error => {
-      console.error("Error:", error);
-    });
+  newBookButton.addEventListener('click', () => {
+    fetch('book-form.html')
+      .then(response => response.text())
+      .then(data => {
+        bookFormContainer.innerHTML = data;
+
+        // Add event listener for form submission
+        const bookForm = document.getElementById('book-form');
+        bookForm.addEventListener('submit', (event) => {
+          event.preventDefault(); // Prevent the default form submission
+          const newBook = makeBook();
+          console.log(`${newBook} created`);
+          addBookToLibrary(newBook);
+          console.log(`${newBook} added to library`);
+        });
+      })
+      .catch(error => console.error('Error loading the form:', error));
+  });
 });
-
-showBookButton.onclick = () => {
-  const bookForm = './book-form.html';
-  const bookFormContainer = document.getElementById("book-form-container");
-  bookFormContainer.innerHTML = bookForm;
-}
 
 function Book(title, author, releaseYear, genre) {
   this.title = title;
@@ -26,12 +31,8 @@ function Book(title, author, releaseYear, genre) {
   this.genre = genre;
 }
 
-function addBookToLibrary() {
-  // create book const to store new book object
-  const book = {};
-  // get book info from the form
-  const bookInfoForm = document.getElementById("book-info-form")
-  // push to bookLibrary
+function addBookToLibrary(bookForm) {
+  const book = makeBook(bookForm);
   bookLibrary.push(book);
 }
 
@@ -39,19 +40,33 @@ function getBook() {
   bookLibrary.pop();
 }
 
-function displayBooks() {
-  // iterate through bookLibrary
-  //   pop book
-  //   display book
+function makeBook() {
+  // create book object from submitted book-info-form
+  const title = document.getElementById("title").value;
+  const author = document.getElementById("author").value;
+  const releaseYear = document.getElementById("release-year").value;
+  const genre = document.getElementById("genre").value;
+
+  const book = new Book(title, author, releaseYear, genre);
+  return book;
 }
 
 function displayBook(book) {
-  // generate html to display book attrs
   const libContainer = document.getElementById("library-container");
-  const bookContent = libContainer.appendChild(libContainer);
-  // add as child to library container
+  const bookInfoDiv = document.createElement("div");
+  bookInfoDiv.classList.add("book-info-container");
+  // generate html to display book attrs
+  bookInfoDiv.innerHTML = `
+    <h3>${book.title}</h3>
+    <p>${book.author}</p>
+    <p>${book.releaseYear}</p>
+    <p>${book.genre}</p>
+  `;
+  libContainer.appendChild(bookInfoDiv);
 }
 
-function showBookForm() {
-  // render the form to add title, etc
+function displayBooks() {
+  for (let step = 0; step < bookLibrary.length; step++) {
+    displayBook(bookLibrary[step]);
+  }
 }
