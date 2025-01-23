@@ -2,33 +2,37 @@
   <legend>Enter book information here.</legend>
   <fieldset>
     <div class="field-container">
-      <label for="title">Title:</label>
-      <input type="text" name="title" id="title">
+      <label for="title">Title</label>
+      <input type="text" name="title" id="title" min="1" required>
     </div>
     <div class="field-container">
-      <label for="author">Author:</label>
-      <input type="text" name="author" id="author">
+      <label for="author">Author</label>
+      <input type="text" name="author" id="author" min="1" max="240" required>
     </div>
     <div class="field-container">
-      <label for="release-year">Release year:</label>
-      <input type="number" name="release-year" id="release-year">
+      <label for="release-year">Release year</label>
+      <!-- https://en.wikipedia.org/wiki/History_of_books#China -->
+      <!-- TODO: JS to get current year -->
+      <input type="number" name="release-year" id="release-year" min="868" max="2024" value="2024" required>
     </div>
     <div class="field-container">
-      <label for="genre">Genre:</label>
-      <!-- select from list of genres -->
-      <select name="genre" id="genre">
+      <label for="genre">Genre</label>
+      <select name="genre" id="genre" required>
         <option value="Fantasy">Fantasy</option>
         <option value="Sci-fi">Sci-fi</option>
         <option value="Mystery">Mystery</option>
         <option value="Horror">Horror</option>
         <option value="Romance">Romance</option>
         <option value="Non-fiction">Non-fiction</option>
-        <option value="Other">Other</option>
+        <option value="Other" selected>Other</option>
       </select>
     </div>
     <div class="field-container">
       <label for="is-read">Have you read this title?</label>
-      <input type="checkbox" name="is-read" id="is-read">
+      <select name="is-read" id="is-read" required>
+        <option value="true">Yes</option>
+        <option value="false" selected>No</option>
+      </select>
     </div>
     <div class="submit-btn-container">
       <button type="submit" id="book-submit-btn">Submit</button>
