@@ -94,7 +94,7 @@ main {
   display: inline-block;
 }
 
-.book-info-container:hover {
+.book-info-container:hover, .book-info-container:focus, #book-form:hover, #book-form:focus {
   background: #2a363b;
 }
 

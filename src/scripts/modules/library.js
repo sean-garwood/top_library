@@ -1,7 +1,9 @@
 import { Book } from "../classes/Book.js";
 import { displayBooks } from "./ui.js";
 
-const bookLibrary = [];
+const storedLibrary = sessionStorage.getItem("bookLibrary") || "[]";
+const bookLibrary = JSON.parse(storedLibrary);
+displayBooks();
 
 function addBookToLibrary(book) {
   bookLibrary.push(book);

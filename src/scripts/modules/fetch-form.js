@@ -1,4 +1,4 @@
-import { makeBook, addBookToLibrary } from "./library.js";
+import { addBookToLibrary, getBookLibrary, makeBook } from "./library.js";
 import { displayBooks } from "./ui.js";
 import { validateForm } from "./validate.js";
 
@@ -19,6 +19,7 @@ function fetchForm() {
       else {
         const newBook = makeBook();
         addBookToLibrary(newBook);
+        sessionStorage.setItem("bookLibrary", JSON.stringify(getBookLibrary()));
         bookForm.reset();
       }
 
